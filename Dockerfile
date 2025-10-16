@@ -1,5 +1,5 @@
 # Use official phpMyAdmin lightweight image
-FROM phpmyadmin/phpmyadmin:fpm-alpine
+FROM phpmyadmin/phpmyadmin:latest
 
 # Optional: Set fallback defaults (can be overridden by Kubernetes envs)
 ENV PMA_HOSTS=db1.wishfin.com,db2.wishfin.com
