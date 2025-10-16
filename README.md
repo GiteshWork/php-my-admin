@@ -37,10 +37,6 @@ After updating `values.yaml`, upgrade your release:
 ```bash
 helm upgrade my-phpmyadmin ./phpmyadmin-chart -f values.yaml
 
-
-
-
-
 ---
 
 This makes it **very clear for users** how to:  
@@ -49,7 +45,3 @@ This makes it **very clear for users** how to:
 3. Upgrade the chart without touching templates.  
 
 ---
-
-If you want, I can **also modify your deployment.yaml** to automatically pick **all extra DB env vars dynamically** and append them, so the chart is fully production-ready and flexible.  
-
-Do you want me to do that next?
