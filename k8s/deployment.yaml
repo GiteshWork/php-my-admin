@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+        - name: phpmyadmin
+          image: phpmyadmin/phpmyadmin:fpm-alpine
+          ports:
+            - containerPort: 80
+          env:
+            - name: PMA_HOSTS
+              value: db1.wishfin.com,db2.wishfin.com
+            - name: PMA_PORTS
+              value: "3306,3306"
+            - name: PMA_USER1
+              valueFrom:
+                secretKeyRef:
+                  name: phpmyadmin-db-creds
+                  key: DB1_USER
+            - name: PMA_PASSWORD1
+              valueFrom:
+                secretKeyRef:
+                  name: phpmyadmin-db-creds
+                  key: DB1_PASSWORD
+            - name: PMA_USER2
+              valueFrom:
+                secretKeyRef:
+                  name: phpmyadmin-db-creds
+                  key: DB2_USER
+            - name: PMA_PASSWORD2
+              valueFrom:
+                secretKeyRef:
+                  name: phpmyadmin-db-creds
+                  key: DB2_PASSWORD
