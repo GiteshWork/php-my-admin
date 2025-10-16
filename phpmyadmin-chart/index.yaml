@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  phpmyadmin:
+  - apiVersion: v2
+    appVersion: 5.2.2
+    created: "2025-10-16T15:57:10.613194049+05:30"
+    description: A Helm chart for deploying phpMyAdmin
+    digest: 7bd83dbdb0f16dacb765d1deed8c9f149e70a3d7d088f700d50aad7b1eb0dd4f
+    name: phpmyadmin
+    type: application
+    urls:
+    - https://github.com/GiteshWork/php-my-admin/raw/main/phpmyadmin-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-10-16T15:57:10.611409021+05:30"
