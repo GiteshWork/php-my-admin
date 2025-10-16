@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: phpmyadmin
-          image: phpmyadmin/phpmyadmin:fpm-alpine
+          image: phpmyadmin/phpmyadmin:5.2.2
           ports:
             - containerPort: 80
           env:
