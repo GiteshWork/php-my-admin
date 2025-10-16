@@ -1,16 +1,12 @@
-    # Use official phpMyAdmin image
-    FROM phpmyadmin/phpmyadmin:fpm-alpine
+# Use official phpMyAdmin lightweight image
+FROM phpmyadmin/phpmyadmin:fpm-alpine
 
-    # Configure multiple databases
-    ENV PMA_HOSTS=db1.wishfin.com,db2.wishfin.com
-    ENV PMA_PORTS=3306,3306
-    ENV PMA_USER1=<db1-user>
-    ENV PMA_PASSWORD1=<db1-password>
-    ENV PMA_USER2=<db2-user>
-    ENV PMA_PASSWORD2=<db2-password>
+# Optional: Set fallback defaults (can be overridden by Kubernetes envs)
+ENV PMA_HOSTS=db1.wishfin.com,db2.wishfin.com
+ENV PMA_PORTS=3306,3306
 
-    # Optional: Copy custom config if needed
-    # COPY config.inc.php /etc/phpmyadmin/config.inc.php
+# Expose port used by phpMyAdmin
+EXPOSE 80
 
-    # Expose port
-    EXPOSE 80
+# The official image already includes the CMD to start PHP-FPM
+# so you don’t need to override ENTRYPOINT or CMD
