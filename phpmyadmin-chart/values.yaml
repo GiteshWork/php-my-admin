@@ -1,0 +1,62 @@
+replicaCount: 1
+
+image:
+  repository: phpmyadmin/phpmyadmin
+  tag: fpm-alpine
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+db:
+  allowArbitraryServer: true
+  port: 3306
+  hosts:
+    - name: db1.wishfin.com
+      userSecretKey: DB1_USER
+      passwordSecretKey: DB1_PASSWORD
+    - name: db2.wishfin.com
+      userSecretKey: DB2_USER
+      passwordSecretKey: DB2_PASSWORD
+
+extraEnvVarsSecret: phpmyadmin-db-creds
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  hosts:
+    - host: phpmyadmin.wishfin.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: 80
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 6
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: 80
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 6
+
+extraEnvVars: []
