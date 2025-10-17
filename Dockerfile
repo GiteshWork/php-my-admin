@@ -22,6 +22,7 @@ RUN wget https://files.phpmyadmin.net/phpMyAdmin/${PHPMYADMIN_VERSION}/phpMyAdmi
 RUN chown -R www-data:www-data /usr/share/phpmyadmin
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 COPY config.inc.php /usr/share/phpmyadmin/config.inc.php
+RUN chmod 755 /usr/share/phpmyadmin/config.inc.php
 
 # Expose port 80
 EXPOSE 80
