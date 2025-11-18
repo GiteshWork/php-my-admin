@@ -9,8 +9,10 @@ RUN apt-get update && apt-get install -y \
     wget \
     unzip \
     libzip-dev \
+    default-mysql-client \
     && docker-php-ext-install mysqli pdo pdo_mysql \
     && rm -rf /var/lib/apt/lists/*
+
 
 # Download and install phpMyAdmin
 RUN wget https://files.phpmyadmin.net/phpMyAdmin/${PHPMYADMIN_VERSION}/phpMyAdmin-${PHPMYADMIN_VERSION}-all-languages.zip -O /tmp/phpmyadmin.zip \
